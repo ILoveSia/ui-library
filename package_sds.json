@@ -1,0 +1,81 @@
+{
+  "name": "@nova/ui-library",
+  "private": false,
+  "version": "0.0.2",
+  "type": "module",
+  "main": "./dist/nova-lib.umd.js",
+  "module": "./dist/nova-lib.es.js",
+  "types": "./dist/nova-lib.d.ts",
+  "files": [
+    "dist",
+    "lib/config/eslint/*.js",
+    "lib/config/prettier/*.js",
+    "lib/styles/scss/**/*.scss"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/nova-lib.d.ts",
+      "require": "./dist/nova-lib.umd.js",
+      "import": "./dist/nova-lib.es.js"
+    },
+    "./eslint": {
+      "import": "./lib/config/eslint/index.js"
+    },
+    "./prettier": {
+      "import": "./lib/config/prettier/index.js"
+    },
+    "./store": {
+      "types": "./dist/nova-lib.d.ts",
+      "require": "./dist/nova-lib.umd.js",
+      "import": "./dist/nova-lib.es.js"
+    },
+    "./utils": {
+      "types": "./dist/nova-lib.d.ts",
+      "require": " ./dist/nova-lib.umd.js",
+      "import": "./dist/nova-lib.es.js"
+    },
+    "./types": {
+      "import": "./dist/nova-lib.d.ts"
+    },
+    "./styles/*": {
+      "import": "./lib/styles/scss/*"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
+    "opus-x-react-assets": "^1.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.4.0",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.12",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/react-redux": "^7.1.34",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3"
+  }
+}
