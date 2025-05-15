@@ -29,7 +29,7 @@ const UIDialog = memo (({ msg, title, childKey, onHide, type } : any ) => {
 		return {
 			style : styleObj,
 		}
-	}. []);
+	}. [show]);
 	
 	const setDialogConfig = useCallback ( () => {
 		setTimeout ( () => {

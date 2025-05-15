@@ -1,0 +1,44 @@
+common(업무공통함수)폴더활영
+
+* [업무명] - function.ts 파일 작업
+	// cb 업무에서만 사용하는 공동 함수들을 모아 놓은 JavaScript class. 
+	export default new ( class CbFunction {
+		// 만들고자 하는 함수를 만든다.
+		getAddFunc( arg : string ) : string {
+			// 만든 공동함수의 로직 구현...
+			return '[ExampleFunction][exampleAddFunc]함수:: ${arg}' ; 
+		}
+		// ... 함수 추가...
+	})();
+	
+	// 업무 화면에서 사용할 때는 아래와 같이 import해서 사용한다.
+	// import CbFunction from '@/domains/cm-cb/common/cb-function';
+	// CbFunction.getAddFunc('test');
+	
+
+* 만들어진 공통함수를 화면에서 사용하기
+	import { useEffect } from 'reat';
+	import type { IComponent } from '@/nova/ui-library/types';
+	//공통함수 가져오기
+	import CbFunction from '@/domains/cm-cb/common/cb-function';
+	
+	interface ISampleIndexProps {
+	}
+	
+	const SampleIndex : IComponent<ISampleIndexProps> = () => {
+		useEffect(() => {
+			// 만든 공통함수 호출 예제
+			const result = CbFunction.getAddFunc('test');
+		}, []);
+		
+		return (
+			<>
+				<div>
+					<span> New Sample Page !! </span>
+				</div>
+			</>
+		);
+	};
+	
+	SampleIndex.displayName = 'SampleIndex';
+	export default SampleIndex;

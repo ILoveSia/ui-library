@@ -1,0 +1,47 @@
+ui-library-패키지-useReduxState
+
+useReduxState()
+- 전역 상태(State)에 값을 저장하고 가져오는 훅 함수입니다.
+- 선제작업 useReduxtSate 훅을 사용하기 위해서는 우선 각 업무의 store/index.ts 파일에 전역 State의 action이 생성되어
+   있어야 합니다
+
+* useReduxState type
+	export const useReduxState = <DatatType = any> (
+		key : string,
+	) : { data : IRootState<DataType>; setData : (arg: any) => any }
+
+* 사용예제
+	import type { IComponent } from '@nova/ui-library/types';
+	import { useReduxState } from '@nova/ui-library/store';
+
+	interface IMainIndexProps {
+	}
+
+	const MainIndex : IComponent<IMainIndexProps> = (): JSX.Element => {
+		// 전역 State에 값을 저장하기 위하여 useReduxState 훅을 사용하고 파라미터로 ActionType을 넘겨준다.
+		const { data, setData } = useReduxState( 'cmCbStore/isSearch');
+		
+		// 버튼 눌렀을 때 전역 state 저장 Handler
+		const setStateHandler = () => {
+			// 상태 저장
+			setData('데이터');
+		};
+		
+		return (
+			<>
+				<div className = "content">
+					<div> {JSON.stringify(data)}</div>
+					<br />
+					<button
+						variant = "solid"
+						onClick = {setStateHandler}
+					>
+						전역 State 저장 테스트
+					</button>
+				</div>
+			</>
+		);		
+	} ;
+	
+	MainIndex.displayName = 'MainIndex';
+	export default MainIndex;

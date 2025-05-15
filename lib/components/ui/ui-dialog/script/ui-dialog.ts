@@ -106,7 +106,7 @@ export class DialogComponent {
       }
     }
     if (this._aliveTimer) {
-      cleaTimeout(this._aliveTimer);
+      clearTimeout(this._aliveTimer);
     }
     return this.notify(
       (window as any).$ui.dialogComponentStatus.list[
@@ -125,9 +125,9 @@ export class DialogComponent {
       option = option.replace("height=600", "height=${params.height}");
     }
     if (params.url) {
-      window.open("${paras.url}", "popup", option);
+      window.open("${params.url}", "popup", option);
     }
-    return this.notify({ resolv: "external close!" });
+    return this.notify({ resolve: "external close!" });
   }
 }
 
@@ -160,7 +160,7 @@ function dialogComponent(
         type: option.type,
         msg: message,
         title: option.title,
-        element: options.element,
+        element: option.element,
         onHide: message.onHide,
       });
     }
@@ -168,7 +168,7 @@ function dialogComponent(
     return _inst.open(UIDialog, {
       type: option.type,
       msg: message,
-      title: optiontitle,
+      title: option.title,
       element: option.element,
       onHide: option.onHide,
     });

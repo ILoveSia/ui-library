@@ -1,0 +1,104 @@
+ui-library-dialog사용법
+
+* ui.dialog
+	- 전역 공통 함수이기때문에 import 안함
+	
+	* 사용법
+		- $ui.dialog({ element: < 컴포넌트 text="1111" /> });
+			- javascript 코드에서 $ui.dialog() 함수를 호출할 때 가장 기본적인 호출 방법입니다.
+			
+	// Dialog 컨덴츠에 들어갈 React Component 를 가져온다.
+	import FirstChildModal from './modal-content/FirstChildMoal';
+	
+	interface ISamplePageProps {
+	}
+	
+	const SamplePage : IComponent < ISamplePageProps> = () : JSX.Element => {
+		// UI.Dialog창 띄우기 버튼 클릭 이벤트
+		const openDialogHandler = () => {	
+			// Dialog 사용 코드
+			$ui.dialog({element : <FirstChildModal /> });
+		};
+		
+		return (
+			<>
+				<button onClick = {openDialogHandler}> Open Dialog </button>
+			</>
+		);
+	};
+	
+	SamplePage.displayName = 'SamplePage';
+	export default SamplePage;
+	
+	* $ui.dialog([옵션]);
+		$ui.dialog()함수 인자로 몇가지 옵션값을 입력할 수 있습니다
+		
+	옵션파라미터명	  |			타입				|	기본값	|	입력 가능 값
+	element				|	ReactNode		  |		null	|	react 컴포넌트	
+	title						|	string					|				  |	팝업 제목 입력
+	width					 |	stirng					|		null	|	팝업 넓이값(단위포함) ex) '600px'
+	height					|	string					|		null	|	팝업 넓이값(단위포함) ex) '600px'
+	size						| small,medium,lage,fulll | small  |  'width' , 'height' 옵션값이 설정 되어 있다면 무시됨. 
+	url						   |	string					|					  |  외부 브라우저 팝업을 띄울때 화면 path 값을 입력
+	isExternal			  |	boolean				|		false	 | 팝업을 외부 팝업으로 띄울지 여부 값
+	
+	* $ui.dialog() 메서드는 Promis객체를 리턴하기 때문에 다음과 같이 dialog창을 닫은 후 처리 코드를 작성 가능
+		$ui.dialog( { element: <FirstChildModal /> }).then(() => {
+			console.log('Dialog창을 닫은 후 처리');
+		});
+		
+* $ui.alert
+	// 옵션 사용 예시 코드
+	$ui.alert('Alert창 띄우기 예제 !!!' , {title : 'Alert 제목' });
+	// Alert창 닫기 예시 코드
+	$ui.alert({close: true });
+	
+	- $ui.alert() 메서드는 Promise객체를 리턴 하기 때문에 다음과 같이 Alert창을 닫은 후 처리 코드를 작성 할수 있다
+		$ui.alert('Alert창 띄우기 예제 !!!' , { title: 'Alert 제목' }).then(() => {
+			console.log('Alert창을 닫은 후 처리');
+		});
+		
+* @ui.confirm
+	-사용법
+	$ui.comform('메시지').then(result) = > {console.log(result); })
+	- javascript 코드에서 $ui.confirm() 함수를 호출할 때 가장 기본적인 호출 방법입니다. $ui.confirm() 메서드는 질문에 대한
+	  답에 따라 이후 처리를 해야 하므로  Promise객체를 리턴합니다. Promise결과 값으로 화면에서 클릭한 버튼의 결과값의 
+      boolean  타입을 넘겨줍니다.
+	- 메시지는 string이나 html형태의 string을 입력할 수 있습니다.
+	
+	interface ISamplePageProps {
+	
+	}
+	
+	const SamplePage : IComponent<ISamplePageProps> = (): JSX.Element => {
+		// $ui.confirm창 띄우기 버튼 클릭 이벤트
+		const openConfirmHandler = () => {
+			// Confirm 사용 코드.
+			$ui.confirm('Confirm창 띄우기 예제!!!').then((result: boolean) => {
+				// true, false값에 따라 나머지 로직을 구현할 수 있습니다.
+				console.log(result);
+			});
+		};
+		
+		return (
+			<button onClick={openConfirmHandler}>Open Confirm </button>
+		)
+	};
+	
+	SamplePage.displayName = 'SamplePage';
+	export default SamplePage;
+	
+	- $ui.confirm('메시지', [옵션객체]);
+		$ui.confirm() 함수의 두번째 인자로 옵션값을 입력할 수 있습니다. 옵션 내용은 다음과 같습니다.
+		옵션파라미터 명 : title
+		타입 : string | html 형태의 string
+		기본값 : 
+		입력 가능 값 및 설명 : Confirm 제목 입력
+	
+		- $ui.confirm() 메서드는 Promise객체를 리턴 하기 때문에 다음과 같이 Confirm창을 
+		닫은 후 처리 코드를 작성할수 있다.
+		Promise 결과값(result) 값은 confirm창에서 선택한 버튼의 결과값을 boolean타입으로 제공
+		
+		ui.confirm( 'Confirm창 띄우기 예제 !!!' , { title: 'Confirm 제목' }).then((result :boolean) => {
+			console.log('Confirm창을 닫은 후 처리');
+		});	

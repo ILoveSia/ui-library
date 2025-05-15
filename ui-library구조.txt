@@ -1,0 +1,99 @@
+ui-library구조
+
+nova-ui-library
+|- .vscode
+     L  settings.json
+|- @types
+     L  index.d.ts
+|- dist
+    L  nova-lib.d.ts
+    L  nova-lib.es.js
+    L  nova-lib.umd.js
+    L  ui-library.css
+    L  vite.svg
+|- lib
+   L  index.ts
+|  |- common
+|  |  |- api
+          L  index.ts
+|  |- components
+|  |  |- ui
+          L  index.ts
+|  |  |  |- ui-container
+             L  DialogComponentContainer.tsx
+|  |  |  |- ui-dialog
+             L  UIDialog.tsx
+|  |  |  |  |- script
+                L  ui-dialog.ts
+|  |- config
+|  |  |- eslint
+          L  index.js
+|  |  |- prettier
+          L  index.js
+|  |- package
+          L  dayjs.ts
+|  |- router         
+          L  create-router.ts
+          L  index.ts
+|  |- store        
+          L  helper.ts
+          L  index.ts
+          L  request.ts
+          L slice.ts
+          L use-store.ts
+|  |- styles        
+
+|  |- types  
+       L  index.ts
+|  |  |- common
+		  L  index.ts
+|  |  |- components
+          L  index.ts
+|  |  |- router
+          L  index.ts
+|  |  |- store
+          L  index.ts
+|  |  |- utils      
+          L  api.ts
+          L  index.ts          
+|  |- utils        
+       L  index.ts
+       
+|- node_modules
+|- public        
+     L  vite.svg
+|- src        
+     L  App,css
+     L  App.tsx
+     L  index.css
+     L  main.tsx
+     L  vite-env.d.ts
+|  |- assets
+       L react.svg     
+
+L  .gitignore
+L  .pmignore
+L  .npmrc
+L  eslint.confg.js
+L  index.html
+L  package-lock.json
+L  package.json
+L  prettier.config.js
+L  README.md
+L  tsconfig.app.json
+L  tsconfig.json
+L  tsconfig.node.json
+L  vite.config.ts       
+       
+
+
+
+
+
+
+
+
+
+
+
+  

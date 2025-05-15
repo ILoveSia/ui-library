@@ -34,6 +34,20 @@ export default class DialogComponentContainer extends React.Component {
     }
   };
 
+  componentDidMount() {
+    if (
+      (window as any).$ui &&
+      (window as any).$ui.dialogComponentStatus &&
+      !(window as any).$ui.dialogComponentStatus.dialogContainerVm
+    ) {
+      (window as any).$ui.dialogComponentStatus.dialogContainerVm = this;
+      console.log(
+        "dialogContaninerVm셋팅 :: ",
+        (window as any).$ui.dialogComponentStatus.dialogContainerVm
+      );
+    }
+  }
+
   render() {
     return (
       <div

@@ -1,0 +1,71 @@
+화면(업무페이지)만들기
+
+* 페이지(화면) 컴포넌트 만들기
+	- page 폴더 내부에 *.tsx파일 
+	
+	// 공통라이브러리 레포지토리에서 컴포넌트 타입을 가져옵니다.
+	import type { IComponent } from '@nova/ui-library/types' ;
+	
+	interface IMainIndexProps {
+	}
+	
+	const MainIndex : IComponent<IMainIndexProps> = (): JSX.Element => {
+		return (
+			<>
+				<div>
+					{ /* 추가 템플릿 작성 */ }
+					<span> New Sample Page !! </span>
+				</div>
+			<>
+		);
+	};
+	// 컴포넌트 이름 정의
+	MainIndex.displayName = 'MainIndex';
+	export default MainIndex;
+	
+	
+* 만든 페이지 라우터 연결
+	- router/index.tsx 파일에 작성
+	
+	import type { TNovaRoute } from '@nova/ui-library/types';
+	import loadable from '@loadable/component';
+	
+	// 라우터에 연결할 페이지를 import 한다.
+	// loadable 라이브러리는 react에서 Code Spliting를 제공해주는 라이브러리이다.
+	const MainIndex = loadable(() => import('@/domains/cm-cb/pages/MainIndex'), {
+		fallback : <div> loading... </div>
+	});
+	
+	const reutes : TNovaRoute[] = [
+		{
+			path : 'main' ,		// 라우터 path를 원하느 이름으로 정하여 작성한다.
+			element : <MainIndex />,	// 위에서 가져온 페이지 컴포넌트를 element에 연결한다.
+			name : 'CMCB/MainIndex.	// 페이지 name을 원하는 이름으로 정하여 입력한다. 되도록이면 다른 라우터 이름과 겹치치 않게 '업무명/파일명' 형태로 작성한다.
+		}
+	];
+	
+	export default routes;
+	
+* src/shared/router/index.tsx 파일에 추가된 업무
+
+	import type { TNovaRoute } from '@nova/ui-library/types';
+	import MainLayoutIndex from '../components/layout/MainLayoutIndex';
+	import ExampleRouter from '@/domains/example/router';
+	import MainRouter from '@/domains/main/router';
+	
+	const routes : TNovaRoute [] = [
+		{
+			path : '/example',
+			element : <LayoutIndex />,
+			children : ExampleRouter,
+		}
+		// main 앱 라우터(대시보드, 메인등)
+		{
+			path : '/main',
+			element : <LayoutIndex />,
+			children : MainRouter,
+		}
+		
+	]
+
+	
